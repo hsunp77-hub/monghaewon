@@ -332,6 +332,40 @@ button:active {
     font-size: 13px !important;
     border-radius: 10px !important;
   }
+
+  /* 5. Chat Bubble Width Expansion */
+  .char-row {
+    max-width: 96% !important;
+  }
+  
+  .user-wrap {
+    max-width: 92% !important;
+  }
+
+  /* 6. Stacking for Action and Unlock Buttons */
+  .unlock-btn-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+
+  .unlock-btn {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .done-actions-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+
+  .new-dream-btn, .report-btn-lg {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
 }
 
 /* 📱 Extra compact styles for very small screens (<= 480px) */

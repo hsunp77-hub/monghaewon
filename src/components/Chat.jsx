@@ -126,19 +126,19 @@ export default function Chat({
 
                 if (msg.role === "user") {
                   return (
-                    <div key={i} style={style.userWrap} className="message-animate">
+                    <div key={i} style={style.userWrap} className="message-animate user-wrap">
                       <div style={style.userBubble}>
                         {msg.text}
                       </div>
                     </div>
                   );
                 }
-
+ 
                 const ch = CHARACTERS[msg.role];
                 if (!ch) return null;
-
+ 
                 return (
-                  <div key={i} style={style.charRow} className="message-animate">
+                  <div key={i} style={style.charRow} className="message-animate char-row">
                     <div style={{ ...style.avatar, background: ch.color }}>{ch.avatar}</div>
                     <div style={style.charContent}>
                       <div style={{ ...style.charLabel, color: ch.color }}>
@@ -264,32 +264,32 @@ export default function Chat({
                   <p style={style.unlockLabel}>다른 관점의 해석도 추가로 확인해 보시겠습니까?</p>
                 </div>
                 
-                <div style={style.unlockBtnRow}>
+                <div style={style.unlockBtnRow} className="unlock-btn-row">
                   {!unlocked.psychology && (
-                    <button style={{ ...style.unlockBtn, borderColor: "#5A7A5E", color: "#e2ede4" }} onClick={() => onUnlock("psychology")} disabled={loading}>
+                    <button style={{ ...style.unlockBtn, borderColor: "#5A7A5E", color: "#e2ede4" }} className="unlock-btn" onClick={() => onUnlock("psychology")} disabled={loading}>
                       🌿 이선영 박사의 심리 분석 받기
                     </button>
                   )}
                   {!unlocked.saju && (
-                    <button style={{ ...style.unlockBtn, borderColor: "#745fac", color: "#edeaf5" }} onClick={() => onUnlock("saju")} disabled={loading}>
+                    <button style={{ ...style.unlockBtn, borderColor: "#745fac", color: "#edeaf5" }} className="unlock-btn" onClick={() => onUnlock("saju")} disabled={loading}>
                       ☽ 청명 선생의 사주 분석 받기
                     </button>
                   )}
                   {!unlocked.foretelling && (
-                    <button style={{ ...style.unlockBtn, borderColor: "#c0392b", color: "#fcdbd9" }} onClick={() => onUnlock("foretelling")} disabled={loading}>
+                    <button style={{ ...style.unlockBtn, borderColor: "#c0392b", color: "#fcdbd9" }} className="unlock-btn" onClick={() => onUnlock("foretelling")} disabled={loading}>
                       🕯️ 몽화의 예지몽 신점 받기
                     </button>
                   )}
                 </div>
-
+ 
                 <div style={style.divider}></div>
-
-                <div style={style.doneActionsRow}>
-                  <button style={style.newDreamBtn} onClick={onStartNewDream} disabled={loading}>
+ 
+                <div style={style.doneActionsRow} className="done-actions-row">
+                  <button style={style.newDreamBtn} className="new-dream-btn" onClick={onStartNewDream} disabled={loading}>
                     ✦ 새로운 꿈 기록하기
                   </button>
                   {dreams.length >= 3 ? (
-                    <button style={style.reportBtnLg} onClick={onGenerateReport} disabled={loading}>
+                    <button style={style.reportBtnLg} className="report-btn-lg" onClick={onGenerateReport} disabled={loading}>
                       👑 처방전 리포트 보기
                     </button>
                   ) : (
