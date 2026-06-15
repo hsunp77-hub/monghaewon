@@ -243,39 +243,8 @@ export default function Chat({
                   </button>
                 </div>
               )}
-              
-              <div ref={chatEndRef} />
-            </div>
-          </div>
 
-          {/* Input / Controls Area */}
-          {chatPhase !== "input" && (
-            <footer style={style.inputArea} className="glass-panel chat-footer">
-              {/* Clarifying Question Reply */}
-              {(chatPhase === "lee" || chatPhase === "cheong" || chatPhase === "halmae") && !loading && (
-                <div style={style.inputRow}>
-                  <input
-                    style={style.inputField}
-                    placeholder="질문에 대한 답이나 추가 정보를 입력하세요..."
-                    value={input}
-                    onChange={e => setInput(e.target.value)}
-                    onKeyDown={handleReplyKeyDown}
-                    disabled={loading}
-                  />
-                  <button 
-                    style={{
-                      ...style.sendBtn,
-                      opacity: (!input.trim() || loading) ? 0.5 : 1
-                    }} 
-                    onClick={onUserReply} 
-                    disabled={loading || !input.trim()}
-                  >
-                    ➔
-                  </button>
-                </div>
-              )}
-
-              {/* First Analysis Done: Choose Other Perspectives to Unlock */}
+              {/* First Analysis Done: Choose Other Perspectives to Unlock (inside scrollable content) */}
               {chatPhase === "first-done" && (
                 <div style={style.unlockContainer} className="message-animate">
                   <div style={style.unlockHeader}>
@@ -319,6 +288,34 @@ export default function Chat({
                   </div>
                 </div>
               )}
+              
+              <div ref={chatEndRef} />
+            </div>
+          </div>
+
+          {/* Input / Controls Area (Only visible for clarifying replies) */}
+          {(chatPhase === "lee" || chatPhase === "cheong" || chatPhase === "halmae") && !loading && (
+            <footer style={style.inputArea} className="glass-panel chat-footer">
+              <div style={style.inputRow}>
+                <input
+                  style={style.inputField}
+                  placeholder="질문에 대한 답이나 추가 정보를 입력하세요..."
+                  value={input}
+                  onChange={e => setInput(e.target.value)}
+                  onKeyDown={handleReplyKeyDown}
+                  disabled={loading}
+                />
+                <button 
+                  style={{
+                    ...style.sendBtn,
+                    opacity: (!input.trim() || loading) ? 0.5 : 1
+                  }} 
+                  onClick={onUserReply} 
+                  disabled={loading || !input.trim()}
+                >
+                  ➔
+                </button>
+              </div>
             </footer>
           )}
         </>
