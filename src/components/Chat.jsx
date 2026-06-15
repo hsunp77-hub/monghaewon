@@ -115,7 +115,7 @@ export default function Chat({
           {/* Message Area */}
           <div style={style.chatArea} className="chat-area">
             <div style={style.messagesContainer}>
-              {chatMessages.map((msg, i) => {
+              {chatPhase !== "input" && chatMessages.map((msg, i) => {
                 if (msg.role === "system-info") {
                   return (
                     <div key={i} style={style.sysInfo} className="message-animate">
@@ -133,10 +133,10 @@ export default function Chat({
                     </div>
                   );
                 }
- 
+
                 const ch = CHARACTERS[msg.role];
                 if (!ch) return null;
- 
+
                 return (
                   <div key={i} style={style.charRow} className="message-animate char-row">
                     <div style={{ ...style.avatar, background: ch.color }}>{ch.avatar}</div>
@@ -181,7 +181,12 @@ export default function Chat({
 
               {/* Initial Dream Input (nested inside scrollable container) */}
               {chatPhase === "input" && (
-                <div style={style.dreamInputCard} className="message-animate">
+                <div style={style.dreamInputCard} className="message-animate dream-input-card">
+                  {/* Greeting Text as Title */}
+                  <div style={style.cardGreeting}>
+                    {chatMessages[0]?.text || "오늘 꾸신 꿈을 들려주세요."}
+                  </div>
+
                   <div style={style.inputGroup}>
                     <label style={style.inputLabel}>📅 꿈꾼 날짜</label>
                     <input
@@ -193,7 +198,7 @@ export default function Chat({
                   </div>
 
                   <div style={style.inputGroup}>
-                    <label style={style.inputLabel}>💭 오늘 밤 꾼 꿈의 내용</label>
+                    <label style={style.inputLabel}>💭 꿈의 상세 내용</label>
                     <textarea
                       style={style.textareaLarge}
                       placeholder={`${profile.name}님, 오늘 꾸신 꿈의 주요 장면이나 감정을 자세히 들려주세요...`}
@@ -838,6 +843,16 @@ const style = {
     backgroundColor: "rgba(10, 10, 20, 0.4)",
     border: "1px solid var(--border-color)",
     width: "100%",
+  },
+  cardGreeting: {
+    fontSize: "13px",
+    lineHeight: "1.6",
+    color: "var(--text-main)",
+    marginBottom: "4px",
+    textAlign: "center",
+    paddingBottom: "12px",
+    borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
+    fontWeight: "500",
   },
   inputLabel: {
     fontSize: "12px",

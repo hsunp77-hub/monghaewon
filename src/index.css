@@ -342,6 +342,11 @@ button:active {
     max-width: 92% !important;
   }
 
+  .dream-input-card {
+    width: 94% !important;
+    margin: 0 auto !important;
+  }
+
   /* 6. Stacking for Action and Unlock Buttons */
   .unlock-btn-row {
     flex-direction: column !important;
