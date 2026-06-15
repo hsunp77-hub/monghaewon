@@ -71,7 +71,7 @@ export default function Onboard({ onSubmit, onOpenSettings, useMock }) {
         </button>
       </div>
 
-      <div style={style.card} className="glass-panel">
+      <div style={style.card} className="glass-panel onboard-card">
         <div style={style.moonContainer}>
           <div style={style.moon} className="glow-text">☽</div>
           <div style={style.moonGlow}></div>
@@ -302,7 +302,7 @@ const style = {
     borderRadius: "12px",
     padding: "12px 14px",
     color: "var(--text-bright)",
-    fontSize: "14px",
+    fontSize: "16px",
     outline: "none",
     cursor: "pointer",
   },

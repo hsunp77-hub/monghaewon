@@ -203,7 +203,7 @@ export function getMockCheongFirstResponse(dream) {
     summaryText = `이 꿈은 전체적으로 본인의 타고난 사주팔자 오행 기운에 새로운 일진의 변화를 주고, 정체된 조후를 맞춰 막힌 운의 순환을 도우려는 음양의 격렬한 동요를 비추고 있소.`;
   }
 
-  return `청명(靑明)이외다. 오늘 다녀간 꿈의 오행(五행) 배합을 사용자의 생년월일 사주팔자 기운과 견주어 전체적으로 살펴보았소.
+  return `청명(靑明)이외다. 다녀간 꿈의 오행(五행) 배합을 사용자의 생년월일 사주팔자 기운과 견주어 전체적으로 살펴보았소.
 
 "꿈속 상징의 오행 분석"
 ${analyses.join("\n\n")}
@@ -293,9 +293,9 @@ export function getMockForetellFirstResponse(dream) {
 
   let summaryText = "";
   if (concepts.length > 0) {
-    summaryText = `내 신기 어린 눈으로 쭉 훑어보니, 오늘 꿈은 네가 가진 ${concepts.join(", 그리고 ")}을 아주 똑똑히 보여주고 있구나. 앞으로 네 앞길이 훤히 뚫릴 운수란다.`;
+    summaryText = `내 신기 어린 눈으로 쭉 훑어보니, 이번 꿈은 네가 가진 ${concepts.join(", 그리고 ")}을 아주 똑똑히 보여주고 있구나. 앞으로 네 앞길이 훤히 뚫릴 운수란다.`;
   } else {
-    summaryText = `내 신기 어린 눈으로 쭉 훑어보니, 오늘 꿈은 네 막힌 살들이 비켜나고 새로운 활로와 인연이 닿아서 인생의 큰 경사가 생길 운수란다.`;
+    summaryText = `내 신기 어린 눈으로 쭉 훑어보니, 이번 꿈은 네 막힌 살들이 비켜나고 새로운 활로와 인연이 닿아서 인생의 큰 경사가 생길 운수란다.`;
   }
 
   return `몽화 할미란다! 네가 어제 다녀간 꿈의 자국들을 내 신통방통한 눈으로 샅샅이 비춰 보았단다. 꿈이라는 건 다가올 길흉을 무당의 방울소리처럼 미리 귀띔해 주는 거울이니 절대 귓등으로 흘려들어선 안 되느니라.
@@ -359,7 +359,7 @@ export function getMockCheongResponse(dream, userReply, firstExpertReply, birthd
   if (hasHair || hasSki) {
     detailedSynthesis = `꿈속에서 ${hasHair ? "단발로 머리를 자르고 " : ""}${hasSki ? "새벽 스키장에서 질주한 " : ""}에너지는 사주 내에 얽혀 있던 고집 센 목(木) 기운을 절단하고, 막혀 있던 수(水)기를 힘차게 순환시키는 조후의 발현이오.`;
   } else {
-    detailedSynthesis = `오늘 나타난 오행의 에너지는 사주 내에 정체되어 있던 막힌 기운들을 씻어내고 힘차게 순환시키는 조후의 조화로운 발현이오.`;
+    detailedSynthesis = `꿈에 나타난 오행의 에너지는 사주 내에 정체되어 있던 막힌 기운들을 씻어내고 힘차게 순환시키는 조후의 조화로운 발현이오.`;
   }
 
   const isMonghwa = firstExpertReply && (firstExpertReply.includes("할미") || firstExpertReply.includes("몽화") || firstExpertReply.includes("소금"));
@@ -372,11 +372,11 @@ export function getMockCheongResponse(dream, userReply, firstExpertReply, birthd
     refText = "무속인 몽화의 신점 징조";
   }
 
-  return `청명(靑明)이외다. ${refText}을 바탕으로, 태어나신 생년월일 ${birthdate}의 오행 성쇠를 오늘 꾼 꿈의 전체 줄거리와 종합적으로 조율해 보았소.
+  return `청명(靑明)이외다. ${refText}을 바탕으로, 태어나신 생년월일 ${birthdate}의 오행 성쇠를 꾸신 꿈의 전체 줄거리와 종합적으로 조율해 보았소.
 
 이전 분석이 짚어낸 자아의 주체적 정리와 흐름은 명리학 상으로 금(金) 기운의 기민한 작용과 일치하오. ${detailedSynthesis} 
 
-1. 꿈의 최종 격(格): 오늘 꾸신 꿈은 본인의 인생 변환점에서 찾아든 명백한 예지몽(豫知夢)의 성격이 매우 짙소.
+1. 꿈의 최종 격(格): 꾸신 꿈은 본인의 인생 변환점에서 찾아든 명백한 예지몽(豫知夢)의 성격이 매우 짙소.
 2. 구체적 현실 예측: 다가올 10일 이내에 평소 갈망하던 일(문서 취득, 이직, 승진 등)에서 동남방으로부터 뜻밖의 기쁜 소식이 도착하거나 귀인이 문을 두드릴 것이오.
 3. 조심하고 취할 기운: 목요일 야간에는 기의 소모가 많으니 가벼운 산책 외의 외출을 삼가고, 황색이나 푸른색 계열의 소품을 늘 몸에 지녀 사주의 조화를 완성해 보시오.`;
 }

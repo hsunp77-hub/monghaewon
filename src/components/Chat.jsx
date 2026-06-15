@@ -184,7 +184,7 @@ export default function Chat({
                 <div style={style.dreamInputCard} className="message-animate dream-input-card">
                   {/* Greeting Text as Title */}
                   <div style={style.cardGreeting}>
-                    {chatMessages[0]?.text || "오늘 꾸신 꿈을 들려주세요."}
+                    {chatMessages[0]?.text || "꾸신 꿈을 들려주세요."}
                   </div>
 
                   <div style={style.inputGroup}>
@@ -201,7 +201,7 @@ export default function Chat({
                     <label style={style.inputLabel}>💭 꿈의 상세 내용</label>
                     <textarea
                       style={style.textareaLarge}
-                      placeholder={`${profile.name}님, 오늘 꾸신 꿈의 주요 장면이나 감정을 자세히 들려주세요...`}
+                      placeholder={`${profile.name}님, 꿈의 주요 장면이나 느꼈던 감정을 자세히 들려주세요...`}
                       value={currentDreamText}
                       onChange={e => setCurrentDreamText(e.target.value)}
                       rows={3}
@@ -338,7 +338,7 @@ export default function Chat({
               <div style={style.emptyDiary} className="glass-panel message-animate">
                 <span style={{ fontSize: "48px", marginBottom: "16px", display: "block" }}>🖋️</span>
                 <div style={style.emptyText}>기록된 꿈 일기가 없습니다.</div>
-                <div style={style.emptySubtext}>'실시간 해몽' 탭에서 오늘의 첫 꿈 일기를 적어보세요.</div>
+                <div style={style.emptySubtext}>'실시간 해몽' 탭에서 첫 꿈 일기를 적어보세요.</div>
                 <button style={style.goToChatBtn} onClick={() => setActiveSubTab("chat")}>첫 꿈 기록하기 ➔</button>
               </div>
             ) : (
@@ -871,7 +871,7 @@ const style = {
     height: "44px",
     borderRadius: "12px",
     padding: "0 14px",
-    fontSize: "13px",
+    fontSize: "16px",
   },
   submitDreamBtn: {
     width: "100%",

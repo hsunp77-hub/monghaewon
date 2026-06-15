@@ -48,8 +48,10 @@
   padding: 0;
 }
 
-html, body, #root {
+html, body {
   width: 100%;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
   min-height: 100vh;
   background: radial-gradient(circle at 50% 50%, #15112c 0%, #05050a 80%);
   color: var(--text-main);
@@ -79,6 +81,7 @@ body::after {
   z-index: 1; /* Make sure React content is rendered on top of body::after stars */
   max-width: 100% !important;
   width: 100% !important;
+  overflow-x: hidden !important;
   border-inline: none !important;
   text-align: left !important;
 }
@@ -149,14 +152,14 @@ body::after {
 }
 
 /* Custom styled inputs */
-input, textarea {
+input, textarea, select {
   background: rgba(5, 5, 10, 0.5);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 12px 16px;
   color: var(--text-bright);
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 16px;
   transition: all 0.25s ease;
 }
 
@@ -388,6 +391,13 @@ button:active {
   
   .header-dict-btn {
     padding: 4px 8px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .onboard-card {
+    padding: 24px 16px !important;
+    border-radius: 16px !important;
   }
 }
 

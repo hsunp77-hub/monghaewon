@@ -37,7 +37,7 @@ function saveStorage(data) {
 // ── SYSTEM PROMPTS ────────────────────────────────────────────────────────────
 function getLeeSystem(birthdate, pastDreams, analysisFocus) {
   const pastSummary = pastDreams.length > 0
-    ? "\n\n[이전 꿈 기록]\n" + pastDreams.map((d, i) => d.date + ": " + d.content).join("\n") + "\n→ 오늘 꿈을 해석할 때 이전 꿈들과의 연속성, 반복 상징, 변화 흐름을 반드시 연결하세요."
+    ? "\n\n[이전 꿈 기록]\n" + pastDreams.map((d, i) => d.date + ": " + d.content).join("\n") + "\n→ 이번 꿈을 해석할 때 이전 꿈들과의 연속성, 반복 상징, 변화 흐름을 반드시 연결하세요."
     : "";
 
   const focusModifier = analysisFocus === "foretelling"
@@ -54,7 +54,7 @@ function getLeeSystem(birthdate, pastDreams, analysisFocus) {
 - 금기어: "신호일 수 있어요" / "나아가고 있어요" / "좋은 것 같아요" 절대 사용 금지.
 
 [상담 방식 및 단계별 대응 규칙]
-당신과 사용자의 대화는 2개의 턴으로 진행되거나, 혹은 이미 진행된 대화 요약(오늘의 꿈 + 사용자의 추가 답변 + 타 전문가의 분석)이 입력으로 한꺼번에 주어질 수 있습니다. 입력 형태에 따라 다음과 같이 동작하십시오.
+당신과 사용자의 대화는 2개의 턴으로 진행되거나, 혹은 이미 진행된 대화 요약(입력된 꿈 + 사용자의 추가 답변 + 타 전문가의 분석)이 입력으로 한꺼번에 주어질 수 있습니다. 입력 형태에 따라 다음과 같이 동작하십시오.
 
 1. 첫 번째 답변 (사용자가 처음 꿈을 이야기했을 때 - 입력 메시지/대화의 길이가 1이고 일반 꿈인 경우):
    - 일방적으로 모든 상징을 한꺼번에 해몽하여 나열하지 마십시오.
@@ -67,7 +67,7 @@ function getLeeSystem(birthdate, pastDreams, analysisFocus) {
    - 사용자의 무의식을 정리하여, 실생활에서 이번 주에 즉각 시도해볼 수 있는 구체적이고 실질적인 "심리학적 처방전 (마음 가이드)" 1가지를 명확히 제시하십시오.
    - 따뜻하고 권위 있는 학자의 말투로 상담을 격려하며 상담을 최종 마무리하십시오. (분량 500~600자 내외)
 
-3. 종합 분석 답변 (입력이 하나뿐이지만 내용이 "오늘의 꿈: ... 사용자의 추가 답변: ..." 처럼 요약 및 타 전문가 분석을 포함하여 전달하는 경우 - 타 전문가 해금 시):
+3. 종합 분석 답변 (입력이 하나뿐이지만 내용이 "꿈 내용: ... 사용자의 추가 답변: ..." 처럼 요약 및 타 전문가 분석을 포함하여 전달하는 경우 - 타 전문가 해금 시):
    - 질문을 던지지 마십시오.
    - 꿈의 핵심 상징 분석, 사용자의 현실 상황과의 연계, 그리고 최종 심리학적 처방 및 격려의 메시지를 하나의 완결된 에세이 형태의 보고서로 정갈하게 작성하십시오. (분량 500~600자 내외)
 
@@ -97,7 +97,7 @@ function getCheongSystem(birthdate, pastDreams, leeAnalysis, analysisFocus) {
 - 금기어: 심리학 용어, "무의식", "상징", "트라우마" 절대 사용 금지.
 
 [상담 방식 및 단계별 대응 규칙]
-당신과 사용자의 대화는 2개의 턴으로 진행되거나, 혹은 이미 진행된 대화 요약(오늘의 꿈 + 사용자의 추가 답변 + 타 전문가의 분석)이 입력으로 한꺼번에 주어질 수 있습니다. 입력 형태에 따라 다음과 같이 동작하십시오.
+당신과 사용자의 대화는 2개의 턴으로 진행되거나, 혹은 이미 진행된 대화 요약(입력된 꿈 + 사용자의 추가 답변 + 타 전문가의 분석)이 입력으로 한꺼번에 주어질 수 있습니다. 입력 형태에 따라 다음과 같이 동작하십시오.
 
 1. 첫 번째 답변 (사용자가 처음 꿈을 이야기했을 때 - 입력 메시지/대화의 길이가 1이고 일반 꿈인 경우):
    - 일방적으로 모든 상징을 나열하며 결론짓지 마십시오.
@@ -110,7 +110,7 @@ function getCheongSystem(birthdate, pastDreams, leeAnalysis, analysisFocus) {
    - 사주의 막힌 곳을 뚫어줄 구체적이고 실질적인 "명리학적 처방전 (개운법 및 방책)" 1가지를 일러주십시오. (예: 착용할 색상, 피해야 할 방위, Remedy 행동 등 구체적 명시)
    - 묵직하고 고풍스러운 어조로 삶의 방향을 일깨우며 상담을 최종 마무리하십시오. (분량 500~600자 내외)
 
-3. 종합 분석 답변 (입력이 하나뿐이지만 내용이 "오늘의 꿈: ... 사용자의 추가 답변: ..." 처럼 요약 및 타 전문가 분석을 포함하여 전달하는 경우 - 타 전문가 해금 시):
+3. 종합 분석 답변 (입력이 하나뿐이지만 내용이 "꿈 내용: ... 사용자의 추가 답변: ..." 처럼 요약 및 타 전문가 분석을 포함하여 전달하는 경우 - 타 전문가 해금 시):
    - 질문을 던지지 마십시오.
    - 꿈의 지배 오행 분석, 사용자의 사주팔자 융합 분석, 다가올 2주 내의 일진 변화 예측(길흉화복), 그리고 구체적인 명리학적 처방전(개운법)을 하나의 완결된 보고서로 작성하십시오. (분량 500~600자 내외)
 
@@ -137,7 +137,7 @@ function getHalmaeSystem(birthdate, pastDreams, leeAnalysis, analysisFocus) {
 - 금기어: "무의식", "원형", "콤플렉스", "오행", "사주", "조후" 절대 사용 금지.
 
 [상담 방식 및 단계별 대응 규칙]
-당신과 사용자의 대화는 2개의 턴으로 진행되거나, 혹은 이미 진행된 대화 요약(오늘의 꿈 요약 + 사용자의 추가 답변 + 타 전문가의 분석)이 입력으로 한꺼번에 주어질 수 있습니다. 입력 형태에 따라 다음과 같이 동작하십시오.
+당신과 사용자의 대화는 2개의 턴으로 진행되거나, 혹은 이미 진행된 대화 요약(입력된 꿈 요약 + 사용자의 추가 답변 + 타 전문가의 분석)이 입력으로 한꺼번에 주어질 수 있습니다. 입력 형태에 따라 다음과 같이 동작하십시오.
 
 1. 첫 번째 답변 (사용자가 처음 꿈을 이야기했을 때 - 입력 메시지/대화의 길이가 1이고 일반 꿈인 경우):
    - 꿈속에 깃든 민속학적 대략적인 해몽 방향(예: 이빨에 낀 찌꺼기를 치우는 것, 건물 조형을 남몰래 숨기는 행위 등)을 짚고, 신점적으로 느껴지는 직관적 징조를 읊어주십시오.
@@ -148,7 +148,7 @@ function getHalmaeSystem(birthdate, pastDreams, leeAnalysis, analysisFocus) {
    - 사용자가 전한 현실 상황을 꿈속 징조와 연결하여, 다가올 2주 내의 직관적 미래 길흉을 거침없이 예언하십시오. (돼지꿈 복권 구매 등의 구체적 방향 제시)
    - 액을 물리치거나 재수를 트이게 해줄 비방 처방(팥, 소금, 방위, 조력자 등) 1가지를 명확히 처방해주고 대화를 최종 마무리하십시오. (분량 400~500자 내외)
 
-3. 종합 분석 답변 (입력이 하나뿐이지만 내용이 "오늘의 꿈: ... 사용자의 추가 답변: ..." 처럼 요약 및 타 전문가 분석을 포함하여 전달하는 경우 - 타 전문가 해금 시):
+3. 종합 분석 답변 (입력이 하나뿐이지만 내용이 "꿈 내용: ... 사용자의 추가 답변: ..." 처럼 요약 및 타 전문가 분석을 포함하여 전달하는 경우 - 타 전문가 해금 시):
    - 질문은 일절 던지지 마십시오.
    - 꿈의 직관적 민속 해몽, 신점 징조, 향후 2주 내 미래 길흉 예언, 그리고 구체적인 무속적 비방 처방을 하나의 완결된 보고서 형태로 작성하십시오. (분량 400~500자 내외)
 
@@ -281,11 +281,11 @@ export default function App() {
       const focus = saved.profile.analysisFocus || "psychology";
       let greetText = "";
       if (focus === "psychology") {
-        greetText = `다시 오셨군요, ${saved.profile.name}님. 융 분석심리학을 기반으로 마음을 분석해 드릴게요. 오늘 꾸신 꿈을 들려주세요.`;
+        greetText = `다시 오셨군요, ${saved.profile.name}님. 융 분석심리학을 기반으로 마음을 분석해 드릴게요. 꿈의 내용을 들려주세요.`;
       } else if (focus === "saju") {
-        greetText = `반갑소, ${saved.profile.name}님. 사주팔자 오행의 눈으로 오늘의 길흉화복을 짚어드리겠소. 오늘 밤 다녀간 꿈의 흔적을 들려주시오.`;
+        greetText = `반갑소, ${saved.profile.name}님. 사주팔자 오행의 눈으로 길흉화복을 짚어드리겠소. 다녀간 꿈의 흔적을 들려주시오.`;
       } else {
-        greetText = `오냐, 다시 왔구나 ${saved.profile.name}아. 네 꿈자리에 깃든 미래의 조짐과 길흉을 샅샅이 짚어줄 테니, 어서 오늘 꿈을 들려주려무나.`;
+        greetText = `오냐, 다시 왔구나 ${saved.profile.name}아. 네 꿈자리에 깃든 미래의 조짐과 길흉을 샅샅이 짚어줄 테니, 어서 꿈의 흔적을 들려주려무나.`;
       }
 
       setChatMessages([
@@ -348,11 +348,11 @@ export default function App() {
     
     let greetText = "";
     if (focus === "psychology") {
-      greetText = `안녕하세요, ${name}님. 융 분석심리학 전문가 이선영입니다. 마음 속 그림자를 발견할 준비가 되셨나요? 오늘 꾸신 꿈을 들려주세요.`;
+      greetText = `안녕하세요, ${name}님. 융 분석심리학 전문가 이선영입니다. 마음 속 그림자를 발견할 준비가 되셨나요? 꿈의 내용을 들려주세요.`;
     } else if (focus === "saju") {
-      greetText = `반갑소, ${name}님. 명리학자 청명이라 하오. 태어난 날의 기운과 오늘의 일진을 짚어 꿈의 비밀을 풀고자 하니, 꿈을 상세히 일러주시오.`;
+      greetText = `반갑소, ${name}님. 명리학자 청명이라 하오. 태어난 날의 기운을 짚어 꿈의 비밀을 풀고자 하니, 꿈을 상세히 일러주시오.`;
     } else {
-      greetText = `오냐, 반갑다 ${name}아. 신비로운 꿈의 길흉과 예지적 징조를 밝혀줄 무속인 몽화란다. 네 앞길을 보여줄 오늘 꿈을 자세히 들려주려무나.`;
+      greetText = `오냐, 반갑다 ${name}아. 신비로운 꿈의 길흉과 예지적 징조를 밝혀줄 무속인 몽화란다. 네 앞길을 보여줄 꿈을 자세히 들려주려무나.`;
     }
 
     setChatMessages([
@@ -563,7 +563,7 @@ export default function App() {
           const sysPrompt = getLeeSystem(profile.birthdate, dreams, profile.analysisFocus);
           const messages = [{
             role: "user",
-            content: `오늘의 꿈: "${dreamContent}"\n사용자의 추가 답변: "${userReply}"\n\n위 내용과 아래 기존 분석들을 바탕으로 분석심리학(융 심리학) 관점의 분석과 최종 감정 처방을 완성해 주세요.\n\n${contextSummary}`
+            content: `꿈 내용: "${dreamContent}"\n사용자의 추가 답변: "${userReply}"\n\n위 내용과 아래 기존 분석들을 바탕으로 분석심리학(융 심리학) 관점의 분석과 최종 감정 처방을 완성해 주세요.\n\n${contextSummary}`
           }];
           reply = await callGemini(messages, sysPrompt);
         }
@@ -576,7 +576,7 @@ export default function App() {
           const sysPrompt = getCheongSystem(profile.birthdate, dreams, prevLeeText, profile.analysisFocus);
           const messages = [{
             role: "user",
-            content: `오늘의 꿈: "${dreamContent}"\n사용자의 추가 답변: "${userReply}"\n\n위 내용과 아래 기존 분석들을 바탕으로 명리학적 오행 해석을 짚어 주세요.\n\n${contextSummary}`
+            content: `꿈 내용: "${dreamContent}"\n사용자의 추가 답변: "${userReply}"\n\n위 내용과 아래 기존 분석들을 바탕으로 명리학적 오행 해석을 짚어 주세요.\n\n${contextSummary}`
           }];
           reply = await callGemini(messages, sysPrompt);
         }
@@ -592,7 +592,7 @@ export default function App() {
           const sysPrompt = getHalmaeSystem(profile.birthdate, dreams, prevLeeText, profile.analysisFocus);
           const messages = [{
             role: "user",
-            content: `오늘의 꿈: "${dreamContent}"\n사용자의 추가 답변: "${userReply}"\n\n위 내용과 아래 기존 분석들을 바탕으로, 무속적 관점(신점, 한국 전통 민속 해몽, 돼지꿈 복권 등 직관적 징조)에서 이 꿈에 깃든 예지몽의 의미와 다가올 징조를 예언해 주십시오.\n\n${contextSummary}`
+            content: `꿈 내용: "${dreamContent}"\n사용자의 추가 답변: "${userReply}"\n\n위 내용과 아래 기존 분석들을 바탕으로, 무속적 관점(신점, 한국 전통 민속 해몽, 돼지꿈 복권 등 직관적 징조)에서 이 꿈에 깃든 예지몽의 의미와 다가올 징조를 예언해 주십시오.\n\n${contextSummary}`
           }];
           reply = await callGemini(messages, sysPrompt);
         }
@@ -691,7 +691,7 @@ export default function App() {
     setChatMessages(prev => [
       ...prev,
       { role: "system-info", text: `── ${new Date().toLocaleDateString("ko-KR")} ──` },
-      { role: "system-info", text: "오늘 꾸신 새로운 꿈을 말해주십시오." }
+      { role: "system-info", text: "새로운 꿈의 내용을 들려주세요." }
     ]);
   };
 
