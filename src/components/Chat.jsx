@@ -30,6 +30,7 @@ export default function Chat({
   setDreamDate,
   reports = [],
   onViewReport,
+  onOpenDict,
 }) {
   const chatEndRef = useRef(null);
   const [activeSubTab, setActiveSubTab] = useState("chat"); // "chat" | "diary"
@@ -59,15 +60,15 @@ export default function Chat({
   return (
     <div style={style.container}>
       {/* Header */}
-      <header style={style.header} className="glass-panel">
-        <div style={style.headerInner}>
-          <div style={style.logoGroup}>
+      <header style={style.header} className="glass-panel chat-header">
+        <div style={style.headerInner} className="chat-header-inner">
+          <div style={style.logoGroup} className="logo-group">
             <span style={style.logo} className="glow-text-primary">☽ 몽해원</span>
             <span style={style.pill}>꿈 {dreams.length}회</span>
           </div>
-
+ 
           {/* Tab Switcher */}
-          <div style={style.tabSwitcher}>
+          <div style={style.tabSwitcher} className="tab-switcher">
             <button 
               style={{
                 ...style.tabSelectorBtn,
@@ -91,13 +92,16 @@ export default function Chat({
               📖 나의 꿈 일기장
             </button>
           </div>
-
-          <div style={style.actionsGroup}>
+ 
+          <div style={style.actionsGroup} className="actions-group">
             {dreams.length >= 3 && (
               <button style={style.reportHeaderBtn} onClick={onGenerateReport} disabled={loading}>
                 처방전 ✦
               </button>
             )}
+            <button style={style.headerDictBtn} className="glass-panel no-print header-dict-btn" onClick={onOpenDict} title="해몽 사전">
+              🔮 <span className="dict-btn-text">해몽 사전</span>
+            </button>
             <button style={style.settingsBtn} className="glass-panel" onClick={onOpenSettings}>
               ⚙️
             </button>
@@ -109,7 +113,7 @@ export default function Chat({
       {activeSubTab === "chat" ? (
         <>
           {/* Message Area */}
-          <div style={style.chatArea}>
+          <div style={style.chatArea} className="chat-area">
             <div style={style.messagesContainer}>
               {chatMessages.map((msg, i) => {
                 if (msg.role === "system-info") {
@@ -180,7 +184,7 @@ export default function Chat({
           </div>
 
           {/* Input / Controls Area */}
-          <footer style={style.inputArea} className="glass-panel">
+          <footer style={style.inputArea} className="glass-panel chat-footer">
             {/* Initial Dream Input */}
             {chatPhase === "input" && (
               <div style={style.dreamInputCard} className="message-animate">
@@ -527,6 +531,7 @@ const style = {
     overflow: "hidden",
   },
   header: {
+    position: "relative",
     padding: "16px 20px",
     zIndex: 10,
     borderBottom: "1px solid var(--border-color)",
@@ -575,6 +580,19 @@ const style = {
     cursor: "pointer",
     fontWeight: "600",
     boxShadow: "0 4px 10px rgba(116,95,172,0.3)",
+  },
+  headerDictBtn: {
+    background: "rgba(142, 110, 230, 0.12)",
+    border: "1px solid rgba(142, 110, 230, 0.25)",
+    color: "#e2d0ff",
+    borderRadius: "20px",
+    padding: "6px 12px",
+    fontSize: "11px",
+    fontWeight: "600",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    gap: "4px",
   },
   settingsBtn: {
     background: "none",

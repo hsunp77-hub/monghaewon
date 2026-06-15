@@ -735,6 +735,7 @@ export default function App() {
           onGenerateReport={generateReport}
           onReset={resetAll}
           onOpenSettings={() => setIsSettingsOpen(true)}
+          onOpenDict={() => setIsDictOpen(true)}
           unlocked={unlocked}
           onUnlock={handleUnlock}
           realLifeContext={realLifeContext}

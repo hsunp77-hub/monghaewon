@@ -233,3 +233,117 @@ button:active {
   }
 }
 
+/* 📱 Mobile Responsive Styles (Screen width <= 600px) */
+@media (max-width: 600px) {
+  /* 1. Hide the global floating dictionary button on mobile */
+  .floating-dict-btn {
+    display: none !important;
+  }
+
+  /* 2. Chat Header Layout Optimization */
+  .chat-header {
+    padding: 10px 14px !important;
+  }
+  
+  .chat-header-inner {
+    flex-wrap: wrap !important;
+    gap: 8px 0px !important;
+    align-items: center !important;
+  }
+
+  .logo-group {
+    order: 1 !important;
+    gap: 8px !important;
+  }
+  
+  .logo-group span {
+    font-size: 16px !important;
+  }
+
+  .actions-group {
+    order: 2 !important;
+    gap: 6px !important;
+  }
+
+  .actions-group button {
+    padding: 4px 10px !important;
+    font-size: 11px !important;
+    border-radius: 16px !important;
+  }
+
+  /* Make settings button smaller */
+  .actions-group button.glass-panel {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+  }
+
+  /* Tab switcher takes full width on the second row */
+  .tab-switcher {
+    order: 3 !important;
+    width: 100% !important;
+    margin: 4px 0 0 0 !important;
+    display: flex !important;
+  }
+
+  .tab-switcher button {
+    flex: 1 !important;
+    text-align: center !important;
+    padding: 6px 0 !important;
+    font-size: 11px !important;
+  }
+
+  /* 3. Chat Messages Area */
+  .chat-area {
+    padding: 16px 12px !important;
+  }
+
+  /* 4. Chat Footer Input Area (Make it highly compact for mobile) */
+  .chat-footer {
+    padding: 12px 14px !important;
+  }
+
+  /* Compact Initial Dream Input Card */
+  .chat-footer > div {
+    padding: 12px 14px !important;
+    gap: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  .chat-footer label {
+    font-size: 11px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .chat-footer textarea {
+    min-height: 60px !important;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+  }
+
+  .chat-footer input {
+    height: 36px !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+  }
+
+  .chat-footer button {
+    padding: 10px !important;
+    font-size: 13px !important;
+    border-radius: 10px !important;
+  }
+}
+
+/* 📱 Extra compact styles for very small screens (<= 480px) */
+@media (max-width: 480px) {
+  /* Hide text on dictionary button to save horizontal space */
+  .dict-btn-text {
+    display: none !important;
+  }
+  
+  .header-dict-btn {
+    padding: 4px 8px !important;
+  }
+}
+
+
