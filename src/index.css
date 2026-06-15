@@ -352,7 +352,10 @@ button:active {
   .unlock-btn {
     max-width: 100% !important;
     width: 100% !important;
+    height: auto !important;
+    flex: none !important;
     margin: 0 !important;
+    padding: 12px 14px !important;
   }
 
   .done-actions-row {
@@ -364,7 +367,10 @@ button:active {
   .new-dream-btn, .report-btn-lg {
     max-width: 100% !important;
     width: 100% !important;
+    height: auto !important;
+    flex: none !important;
     margin: 0 !important;
+    padding: 12px !important;
   }
 }
 
