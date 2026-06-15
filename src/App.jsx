@@ -401,6 +401,8 @@ export default function App() {
       foretelling: profile.analysisFocus === "foretelling"
     });
 
+    setChatPhase(firstRole);
+
     try {
       let reply = "";
       if (useMock) {
@@ -455,6 +457,7 @@ export default function App() {
         ...prev,
         { role: "system-info", text: `⚠️ 해석 실패: ${err.message}` }
       ]);
+      setChatPhase("input");
     } finally {
       setLoading(false);
     }
