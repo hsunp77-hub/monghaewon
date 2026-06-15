@@ -32,13 +32,22 @@ export default function Chat({
   onViewReport,
   onOpenDict,
 }) {
+  const lastAssistantMsgRef = useRef(null);
   const chatEndRef = useRef(null);
   const [activeSubTab, setActiveSubTab] = useState("chat"); // "chat" | "diary"
   const [selectedDream, setSelectedDream] = useState(null);
   const [diaryDetailTab, setDiaryDetailTab] = useState("lee"); // "lee" | "cheong" | "foretell"
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (loading) {
+      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      if (lastAssistantMsgRef.current) {
+        lastAssistantMsgRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   }, [chatMessages, loading]);
 
   const handleDreamKeyDown = (e) => {
@@ -115,49 +124,63 @@ export default function Chat({
           {/* Message Area */}
           <div style={style.chatArea} className="chat-area">
             <div style={style.messagesContainer}>
-              {chatPhase !== "input" && chatMessages.map((msg, i) => {
-                if (msg.role === "system-info") {
+              {chatPhase !== "input" && (() => {
+                const lastAssistantIdx = (() => {
+                  for (let j = chatMessages.length - 1; j >= 0; j--) {
+                    if (chatMessages[j].role !== "user" && chatMessages[j].role !== "system-info") return j;
+                  }
+                  return -1;
+                })();
+
+                return chatMessages.map((msg, i) => {
+                  if (msg.role === "system-info") {
+                    return (
+                      <div key={i} style={style.sysInfo} className="message-animate">
+                        <span style={style.sysInfoText}>{msg.text}</span>
+                      </div>
+                    );
+                  }
+
+                  if (msg.role === "user") {
+                    return (
+                      <div key={i} style={style.userWrap} className="message-animate user-wrap">
+                        <div style={style.userBubble}>
+                          {msg.text}
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  const ch = CHARACTERS[msg.role];
+                  if (!ch) return null;
+
                   return (
-                    <div key={i} style={style.sysInfo} className="message-animate">
-                      <span style={style.sysInfoText}>{msg.text}</span>
+                    <div 
+                      key={i} 
+                      ref={i === lastAssistantIdx ? lastAssistantMsgRef : null}
+                      style={style.charRow} 
+                      className="message-animate char-row"
+                    >
+                      <div style={{ ...style.avatar, background: ch.color }}>{ch.avatar}</div>
+                      <div style={style.charContent}>
+                        <div style={{ ...style.charLabel, color: ch.color }}>
+                          {ch.name} <span style={style.charTitle}>{ch.title}</span>
+                        </div>
+                        <div 
+                          style={{ 
+                            ...style.charBubble, 
+                            background: ch.bubble, 
+                            color: ch.textColor,
+                            borderColor: ch.border
+                          }}
+                        >
+                          {msg.text}
+                        </div>
+                      </div>
                     </div>
                   );
-                }
-
-                if (msg.role === "user") {
-                  return (
-                    <div key={i} style={style.userWrap} className="message-animate user-wrap">
-                      <div style={style.userBubble}>
-                        {msg.text}
-                      </div>
-                    </div>
-                  );
-                }
-
-                const ch = CHARACTERS[msg.role];
-                if (!ch) return null;
-
-                return (
-                  <div key={i} style={style.charRow} className="message-animate char-row">
-                    <div style={{ ...style.avatar, background: ch.color }}>{ch.avatar}</div>
-                    <div style={style.charContent}>
-                      <div style={{ ...style.charLabel, color: ch.color }}>
-                        {ch.name} <span style={style.charTitle}>{ch.title}</span>
-                      </div>
-                      <div 
-                        style={{ 
-                          ...style.charBubble, 
-                          background: ch.bubble, 
-                          color: ch.textColor,
-                          borderColor: ch.border
-                        }}
-                      >
-                        {msg.text}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+                });
+              })()}
 
               {/* Typing Loading Indicator */}
               {loading && (
@@ -289,7 +312,7 @@ export default function Chat({
                         👑 처방전 리포트 보기
                       </button>
                     ) : (
-                      <div style={style.progressHint}>
+                      <div style={style.progressHint} className="progress-hint">
                         리포트를 받으려면 꿈을 <strong>{3 - dreams.length}개</strong> 더 기록해야 합니다. ({dreams.length}/3)
                       </div>
                     )}
@@ -822,8 +845,6 @@ const style = {
     boxShadow: "0 4px 15px rgba(116,95,172,0.4)",
   },
   progressHint: {
-    flex: "1 1 180px",
-    maxWidth: "240px",
     fontSize: "11px",
     color: "var(--text-muted)",
     textAlign: "center",
@@ -831,6 +852,9 @@ const style = {
     backgroundColor: "rgba(255,255,255,0.01)",
     borderRadius: "20px",
     border: "1px solid rgba(255,255,255,0.03)",
+    width: "100%",
+    maxWidth: "240px",
+    margin: "0 auto",
   },
   dreamInputCard: {
     maxWidth: "720px",

@@ -372,13 +372,15 @@ button:active {
     gap: 8px !important;
   }
 
-  .new-dream-btn, .report-btn-lg {
+  .new-dream-btn, .report-btn-lg, .progress-hint {
     max-width: 100% !important;
     width: 100% !important;
     height: auto !important;
     flex: none !important;
     margin: 0 !important;
     padding: 12px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
   }
 }
 
