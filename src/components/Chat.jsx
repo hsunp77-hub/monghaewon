@@ -207,17 +207,7 @@ export default function Chat({
                     onChange={e => setCurrentDreamText(e.target.value)}
                     rows={3}
                   />
-                </div>
-                
-                <div style={style.inputGroup}>
-                  <label style={style.inputLabel}>🌱 최근 현실에서 있었던 일이나 고민 (선택사항)</label>
-                  <input
-                    style={style.inputFieldPlain}
-                    placeholder="예: 어제 직장 면접을 봄, 최근 스트레스를 받음, 가족과 다툼 등..."
-                    value={realLifeContext}
-                    onChange={e => setRealLifeContext(e.target.value)}
-                  />
-                </div>
+                 </div>
 
                 <button 
                   style={{
