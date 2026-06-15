@@ -178,119 +178,121 @@ export default function Chat({
                   </div>
                 </div>
               )}
+
+              {/* Initial Dream Input (nested inside scrollable container) */}
+              {chatPhase === "input" && (
+                <div style={style.dreamInputCard} className="message-animate">
+                  <div style={style.inputGroup}>
+                    <label style={style.inputLabel}>📅 꿈꾼 날짜</label>
+                    <input
+                      type="date"
+                      style={style.inputFieldPlain}
+                      value={dreamDate}
+                      onChange={e => setDreamDate(e.target.value)}
+                    />
+                  </div>
+
+                  <div style={style.inputGroup}>
+                    <label style={style.inputLabel}>💭 오늘 밤 꾼 꿈의 내용</label>
+                    <textarea
+                      style={style.textareaLarge}
+                      placeholder={`${profile.name}님, 오늘 꾸신 꿈의 주요 장면이나 감정을 자세히 들려주세요...`}
+                      value={currentDreamText}
+                      onChange={e => setCurrentDreamText(e.target.value)}
+                      rows={3}
+                    />
+                   </div>
+
+                  <button 
+                    style={{
+                      ...style.submitDreamBtn,
+                      opacity: (!currentDreamText.trim() || loading) ? 0.6 : 1
+                    }} 
+                    onClick={onDreamInput} 
+                    disabled={loading || !currentDreamText.trim()}
+                  >
+                    해석 시작하기 ✦
+                  </button>
+                </div>
+              )}
               
               <div ref={chatEndRef} />
             </div>
           </div>
 
           {/* Input / Controls Area */}
-          <footer style={style.inputArea} className="glass-panel chat-footer">
-            {/* Initial Dream Input */}
-            {chatPhase === "input" && (
-              <div style={style.dreamInputCard} className="message-animate">
-                <div style={style.inputGroup}>
-                  <label style={style.inputLabel}>📅 꿈꾼 날짜</label>
+          {chatPhase !== "input" && (
+            <footer style={style.inputArea} className="glass-panel chat-footer">
+              {/* Clarifying Question Reply */}
+              {(chatPhase === "lee" || chatPhase === "cheong" || chatPhase === "halmae") && !loading && (
+                <div style={style.inputRow}>
                   <input
-                    type="date"
-                    style={style.inputFieldPlain}
-                    value={dreamDate}
-                    onChange={e => setDreamDate(e.target.value)}
+                    style={style.inputField}
+                    placeholder="질문에 대한 답이나 추가 정보를 입력하세요..."
+                    value={input}
+                    onChange={e => setInput(e.target.value)}
+                    onKeyDown={handleReplyKeyDown}
+                    disabled={loading}
                   />
-                </div>
-
-                <div style={style.inputGroup}>
-                  <label style={style.inputLabel}>💭 오늘 밤 꾼 꿈의 내용</label>
-                  <textarea
-                    style={style.textareaLarge}
-                    placeholder={`${profile.name}님, 오늘 꾸신 꿈의 주요 장면이나 감정을 자세히 들려주세요...`}
-                    value={currentDreamText}
-                    onChange={e => setCurrentDreamText(e.target.value)}
-                    rows={3}
-                  />
-                 </div>
-
-                <button 
-                  style={{
-                    ...style.submitDreamBtn,
-                    opacity: (!currentDreamText.trim() || loading) ? 0.6 : 1
-                  }} 
-                  onClick={onDreamInput} 
-                  disabled={loading || !currentDreamText.trim()}
-                >
-                  해석 시작하기 ✦
-                </button>
-              </div>
-            )}
-
-            {/* Clarifying Question Reply */}
-            {(chatPhase === "lee" || chatPhase === "cheong" || chatPhase === "halmae") && !loading && (
-              <div style={style.inputRow}>
-                <input
-                  style={style.inputField}
-                  placeholder="질문에 대한 답이나 추가 정보를 입력하세요..."
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  onKeyDown={handleReplyKeyDown}
-                  disabled={loading}
-                />
-                <button 
-                  style={{
-                    ...style.sendBtn,
-                    opacity: (!input.trim() || loading) ? 0.5 : 1
-                  }} 
-                  onClick={onUserReply} 
-                  disabled={loading || !input.trim()}
-                >
-                  ➔
-                </button>
-              </div>
-            )}
-
-            {/* First Analysis Done: Choose Other Perspectives to Unlock */}
-            {chatPhase === "first-done" && (
-              <div style={style.unlockContainer} className="message-animate">
-                <div style={style.unlockHeader}>
-                  <span style={{ fontSize: "14px" }}>🔮</span>
-                  <p style={style.unlockLabel}>다른 관점의 해석도 추가로 확인해 보시겠습니까?</p>
-                </div>
-                
-                <div style={style.unlockBtnRow} className="unlock-btn-row">
-                  {!unlocked.psychology && (
-                    <button style={{ ...style.unlockBtn, borderColor: "#5A7A5E", color: "#e2ede4" }} className="unlock-btn" onClick={() => onUnlock("psychology")} disabled={loading}>
-                      🌿 이선영 박사의 심리 분석 받기
-                    </button>
-                  )}
-                  {!unlocked.saju && (
-                    <button style={{ ...style.unlockBtn, borderColor: "#745fac", color: "#edeaf5" }} className="unlock-btn" onClick={() => onUnlock("saju")} disabled={loading}>
-                      ☽ 청명 선생의 사주 분석 받기
-                    </button>
-                  )}
-                  {!unlocked.foretelling && (
-                    <button style={{ ...style.unlockBtn, borderColor: "#c0392b", color: "#fcdbd9" }} className="unlock-btn" onClick={() => onUnlock("foretelling")} disabled={loading}>
-                      🕯️ 몽화의 예지몽 신점 받기
-                    </button>
-                  )}
-                </div>
- 
-                <div style={style.divider}></div>
- 
-                <div style={style.doneActionsRow} className="done-actions-row">
-                  <button style={style.newDreamBtn} className="new-dream-btn" onClick={onStartNewDream} disabled={loading}>
-                    ✦ 새로운 꿈 기록하기
+                  <button 
+                    style={{
+                      ...style.sendBtn,
+                      opacity: (!input.trim() || loading) ? 0.5 : 1
+                    }} 
+                    onClick={onUserReply} 
+                    disabled={loading || !input.trim()}
+                  >
+                    ➔
                   </button>
-                  {dreams.length >= 3 ? (
-                    <button style={style.reportBtnLg} className="report-btn-lg" onClick={onGenerateReport} disabled={loading}>
-                      👑 처방전 리포트 보기
-                    </button>
-                  ) : (
-                    <div style={style.progressHint}>
-                      리포트를 받으려면 꿈을 <strong>{3 - dreams.length}개</strong> 더 기록해야 합니다. ({dreams.length}/3)
-                    </div>
-                  )}
                 </div>
-              </div>
-            )}
-          </footer>
+              )}
+
+              {/* First Analysis Done: Choose Other Perspectives to Unlock */}
+              {chatPhase === "first-done" && (
+                <div style={style.unlockContainer} className="message-animate">
+                  <div style={style.unlockHeader}>
+                    <span style={{ fontSize: "14px" }}>🔮</span>
+                    <p style={style.unlockLabel}>다른 관점의 해석도 추가로 확인해 보시겠습니까?</p>
+                  </div>
+                  
+                  <div style={style.unlockBtnRow} className="unlock-btn-row">
+                    {!unlocked.psychology && (
+                      <button style={{ ...style.unlockBtn, borderColor: "#5A7A5E", color: "#e2ede4" }} className="unlock-btn" onClick={() => onUnlock("psychology")} disabled={loading}>
+                        🌿 이선영 박사의 심리 분석 받기
+                      </button>
+                    )}
+                    {!unlocked.saju && (
+                      <button style={{ ...style.unlockBtn, borderColor: "#745fac", color: "#edeaf5" }} className="unlock-btn" onClick={() => onUnlock("saju")} disabled={loading}>
+                        ☽ 청명 선생의 사주 분석 받기
+                      </button>
+                    )}
+                    {!unlocked.foretelling && (
+                      <button style={{ ...style.unlockBtn, borderColor: "#c0392b", color: "#fcdbd9" }} className="unlock-btn" onClick={() => onUnlock("foretelling")} disabled={loading}>
+                        🕯️ 몽화의 예지몽 신점 받기
+                      </button>
+                    )}
+                  </div>
+
+                  <div style={style.divider}></div>
+
+                  <div style={style.doneActionsRow} className="done-actions-row">
+                    <button style={style.newDreamBtn} className="new-dream-btn" onClick={onStartNewDream} disabled={loading}>
+                      ✦ 새로운 꿈 기록하기
+                    </button>
+                    {dreams.length >= 3 ? (
+                      <button style={style.reportBtnLg} className="report-btn-lg" onClick={onGenerateReport} disabled={loading}>
+                        👑 처방전 리포트 보기
+                      </button>
+                    ) : (
+                      <div style={style.progressHint}>
+                        리포트를 받으려면 꿈을 <strong>{3 - dreams.length}개</strong> 더 기록해야 합니다. ({dreams.length}/3)
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </footer>
+          )}
         </>
       ) : (
         /* Dream Diary Tab Content */
