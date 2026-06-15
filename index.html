@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      window.addEventListener('error', function(event) {
+        var errDiv = document.createElement('div');
+        errDiv.style.position = 'fixed';
+        errDiv.style.top = '0';
+        errDiv.style.left = '0';
+        errDiv.style.width = '100%';
+        errDiv.style.backgroundColor = '#C0392B';
+        errDiv.style.color = '#FFFFFF';
+        errDiv.style.padding = '20px';
+        errDiv.style.zIndex = '10000';
+        errDiv.style.fontFamily = 'monospace';
+        errDiv.style.fontSize = '14px';
+        errDiv.style.whiteSpace = 'pre-wrap';
+        errDiv.style.boxSizing = 'border-box';
+        errDiv.innerText = '화면 로딩 에러 진단:\n' + event.message + '\n파일: ' + event.filename + ':' + event.lineno + '\n\n상세 정보:\n' + (event.error ? event.error.stack : '스택 정보 없음');
+        document.body.appendChild(errDiv);
+      });
+    </script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☽</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>몽해원(夢解院) - 심리학과 명리로 풀어보는 꿈 처방전</title>
+    <meta name="description" content="분석심리학(이선영 박사)과 동양 명리학(청명 선생)의 조화로운 협진을 통해 꿈속 상징을 해석하고 지침을 내리는 프리미엄 꿈 처방전 플랫폼" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
